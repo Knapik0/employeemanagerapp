@@ -76,6 +76,7 @@ export class AppComponent implements OnInit {
 
   public searchEmployees(key: string): void {
     console.log(key);
+    this.getEmployees();
     const results: Employee[] = [];
     for (const employee of this.employees) {
       if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
@@ -86,7 +87,7 @@ export class AppComponent implements OnInit {
       }
     }
     this.employees = results;
-    if (results.length === 0 || !key) {
+    if (!key) {
       this.getEmployees();
     }
   }
