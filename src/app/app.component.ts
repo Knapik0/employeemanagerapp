@@ -76,19 +76,19 @@ export class AppComponent implements OnInit {
 
   public searchEmployees(key: string): void {
     console.log(key);
-    this.getEmployees();
-    const results: Employee[] = [];
-    for (const employee of this.employees) {
-      if (employee.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.email.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.phone.toLowerCase().indexOf(key.toLowerCase()) !== -1
-      || employee.jobTitle.toLowerCase().indexOf(key.toLowerCase()) !== -1) {
-        results.push(employee);
-      }
-    }
-    this.employees = results;
     if (!key) {
       this.getEmployees();
+    }
+    else {
+      this.employeeService.searchEmployees(key).subscribe(
+        (response: Employee[]) => {
+          this.employees = response;
+          console.log(this.employees);
+        },
+        (error: HttpErrorResponse) => {
+          alert(error.message);
+        }
+      );
     }
   }
 
