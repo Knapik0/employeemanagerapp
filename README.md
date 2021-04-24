@@ -1,3 +1,7 @@
+# TODO
+reset addForm and updateForm after closing
+repopulate updateForm when throws error after trying to change email to already existing
+
 # Employeemanagerapp
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.8.

@@ -50,14 +50,17 @@ export class AppComponent implements OnInit {
     );
   }
 
-  public onUpdateEmloyee(employee: Employee): void {
+  public onUpdateEmloyee(employee: Employee, addForm: NgForm): void {
+    employee = addForm.value;
     this.employeeService.updateEmployee(employee).subscribe(
       (response: Employee) => {
         console.log(response);
         this.getEmployees();
+        addForm.reset();
       },
       (error: HttpErrorResponse) => {
         alert(error.message);
+        addForm.reset();
       }
     );
   }
